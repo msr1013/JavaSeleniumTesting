@@ -46,6 +46,7 @@ public class LoginTests {
         loginPage.getUserName().sendKeys("Admin");
         driver.findElement(By.xpath("//*[@name=\"password\"]")).sendKeys("admin123");
         driver.findElement(By.xpath("/html/body/div[1]/div[1]/div/div[1]/div/div[2]/div[2]/form/div[3]/button")).click();
+        String textName=dashboardPage.textDashboard;
         Assertions.assertEquals("Dashboard",textName);
 
     }

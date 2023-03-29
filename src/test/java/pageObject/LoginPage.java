@@ -5,8 +5,11 @@ import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 
 public class LoginPage {
-
-    public String inputUsername="";
+    private WebDriver driver;
+    public String inputUsername = "//input[@placeholder=\"Username\"]";
+    public String inputPassword = "//input[@name=\"password\"]";
+    public String buttonLogin = "//button[text()=\" Login \"]";
+    public String textInvalidCredit = "//p[text()=\"Invalid credentials\"]";
 
     public LoginPage(WebDriver driver){
         this.driver=driver;
@@ -25,7 +28,7 @@ public class LoginPage {
     }
 
     public WebElement getErrorMessage(){
-        return driver.findElement(By.xpath(inputUsername));
+        return driver.findElement(By.xpath(textInvalidCredit));
     }
 
     public void waitForElementInSeconds(int seconds){

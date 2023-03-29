@@ -3,7 +3,7 @@ package pageObject;
 import org.openqa.selenium.WebDriver;
 
 public class DashboardPage {
-    public String textDashboard = "//";
+    public String textDashboard = "//h6[text()=\"Dashboard\"]";
 
     private WebDriver driver;
 
