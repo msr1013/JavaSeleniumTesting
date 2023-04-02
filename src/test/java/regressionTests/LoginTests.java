@@ -28,7 +28,7 @@ public class LoginTests {
         driver.manage().timeouts().implicitlyWait(Duration.ofSeconds(15));
         driver.get("https://opensource-demo.orangehrmlive.com/web/index.php/auth/login");
         loginPage = new LoginPage(driver);
-//        dashboardPage = new DashboardPage(driver);
+
     }
 
     @AfterEach
@@ -38,36 +38,24 @@ public class LoginTests {
 
     @Test
     public void verifyThatUserIsAbleToSearchInAdminPage(){
-//        try {
-//            Thread.sleep(5000);
-//        } catch (InterruptedException e) {
-//            e.printStackTrace();
-//        }
-        loginPage.getUserName().sendKeys("Admin");
-        driver.findElement(By.xpath("//*[@name=\"password\"]")).sendKeys("admin123");
-        driver.findElement(By.xpath("/html/body/div[1]/div[1]/div/div[1]/div/div[2]/div[2]/form/div[3]/button")).click();
-//        String textName=dashboardPage.textDashboard;
-//        Assertions.assertEquals("Dashboard",textName);
+
+        loginPage.loginToApplication("Admin","admin123");
 
     }
 
     @Test
     public void verifyThatUserIsNotAbleToSearchInAdminPage(){
-//        try {
-//            Thread.sleep(5000);
-//        } catch (InterruptedException e) {
-//            e.printStackTrace();
-//        }
-        driver.findElement(By.xpath(loginPage.inputUsername)).sendKeys("Adm");
-        driver.findElement(By.xpath(loginPage.inputPassword)).sendKeys("adn123");
-        driver.findElement(By.xpath(loginPage.buttonLogin)).click();
+
+        loginPage.loginToApplication("Admin","admin1sdfs23");
+        loginPage.verifyErrorMessageInLoginPage("Password is Invalid");
+
         try {
             Thread.sleep(5000);
+
         } catch (InterruptedException e) {
             e.printStackTrace();
         }
-        String textName=driver.findElement(By.xpath("//p[text()=\"Invalid Credentials\"]")).getText();
-        Assertions.assertEquals("Invalid Credentials",textName);
+
 
     }
 

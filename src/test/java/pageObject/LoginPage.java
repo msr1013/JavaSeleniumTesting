@@ -1,5 +1,6 @@
 package pageObject;
 
+import org.junit.jupiter.api.Assertions;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
@@ -33,6 +34,18 @@ public class LoginPage {
 
     public void waitForElementInSeconds(int seconds){
         
+    }
+
+    public void loginToApplication (String username,String password){
+        getUserName().sendKeys("Admin");
+        getPassword().sendKeys("admin123");
+        getLoginButton().click();
+        waitForElementInSeconds(5);
+    }
+
+    public void verifyErrorMessageInLoginPage(String expectedMessage){
+        String textName = getErrorMessage().getText();
+        Assertions.assertEquals(expectedMessage,textName);
     }
 
 }
